@@ -5,9 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
+
+     <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+ 
+     <script>
+     // Your web app's Firebase configuration
+     var firebaseConfig = {
+         apiKey: "AIzaSyDcx6aDQvzCI7-Hzzsd6yxUi121vAEJMnk",
+         authDomain: "redemprende-68239.firebaseapp.com",
+         databaseURL: "https://redemprende-68239.firebaseio.com",
+         projectId: "redemprende-68239",
+         storageBucket: "redemprende-68239.appspot.com",
+         messagingSenderId: "255749814322",
+         appId: "1:255749814322:web:6a865481e1f179c230a42b"
+     };
+     // Initialize Firebase
+     firebase.initializeApp(firebaseConfig);
+     var provider = new firebase.auth.GoogleAuthProvider();
+     </script>
+     
+         
+     
 </head>
 <body>
     <div id= "root"></div>
-    <script type="module" src="./app.js"></script>
+    <h1>Registro</h1>
+    <input id="email" type="text" placeholder="Correo">
+    <input id="password" type="password" placeholder="Contraseña">
+    <button id= "bntSigin">registrar</button>
+
+    <h1>Ingreso</h1>
+    <input id="email2" type="text" placeholder="Correo">
+    <input id="password2" type="password" placeholder="Contraseña">
+    <button id= "bntLogin">Ingresar</button>
+    <button id= "bntGoogle">Google</button>
+    <button id= "bntFb">Facebook</button>
+
+
+    <div id="root2"></div>
+    <script src="./app.js"></script>
+    <script src="./server.js"></script>
 </body>
 </html>
