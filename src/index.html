@@ -8,6 +8,7 @@
      <!-- The core Firebase JS SDK is always required and must be listed first -->
      <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
      <script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase-firestore.js"></script>
 
      <!-- TODO: Add SDKs for Firebase products that you want to use
          https://firebase.google.com/docs/web/setup#available-libraries -->
@@ -25,13 +26,15 @@
      };
      // Initialize Firebase
      firebase.initializeApp(firebaseConfig);
-     var provider = new firebase.auth.GoogleAuthProvider();
+    
      </script>
-     
+
          
      
 </head>
 <body>
+
+
     <div id= "root"></div>
     <h1>Registro</h1>
     <input id="email" type="text" placeholder="Correo">
@@ -44,10 +47,30 @@
     <button id= "bntLogin">Ingresar</button>
     <button id= "bntGoogle">Google</button>
     <button id= "bntFb">Facebook</button>
-
-
     <div id="root2"></div>
+
+    <h1>Agregar Usario</h1>
+    <input id="name" type="text" placeholder="Nombre">
+    <input id="lastname" type="text" placeholder="Apellido">
+    <input id="born" type="text" placeholder="Nacimiento">
+    <button id= "bntSave">Agregar</button>
+    <br>
+    <table>
+       <thead>
+           <tr>
+               <th>ID</th>
+               <th>First</th>
+               <th>Last</th>
+               <th>Born</th>
+               <th>Delete</th>
+               <th>Edit</th>
+           </tr>
+       </thead>
+       <tbody id="table">
+           
+       </tbody>
+    </table>
     <script src="./app.js"></script>
-    <script src="./server.js"></script>
+    
 </body>
 </html>

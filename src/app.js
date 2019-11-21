@@ -104,26 +104,29 @@ const checkEmail= ()=>{
     });
 }
 
-observador()
+
 
 // Acceso con Google
 
 const bntGoogle=document.getElementById('bntGoogle');
 bntGoogle.addEventListener('click', () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    authentication(provider)
+    authenticationGoogle(provider)
 })
     
 
 
 //Autenticando con Firebase a través del objeto del proveedor de Google
-function authentication(base_porvider) {
-firebase.auth().signInWithPopup(base_porvider).then(function(result) {
+function authenticationGoogle(base_provider) {
+firebase.auth().signInWithPopup(base_provider).
+then(function(result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
         // The signed-in user info.
         var user = result.user;
         console.log(result);
+        
+
     })
     .catch(function(error) {
         console.log(error);
@@ -141,4 +144,154 @@ firebase.auth().signInWithPopup(base_porvider).then(function(result) {
 
     });
 
+}
+
+// Acceso con Facebook
+
+const bntFb=document.getElementById('bntFb');
+bntFb.addEventListener('click', () =>{
+
+    authFacebook();
+    authCuentaFacebook();
+})
+    
+const authFacebook = () => {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    authCuentaFacebook(provider);
+    }
+    
+    //authenticando con facebook
+    
+    
+    function authCuentaFacebook(provider) {
+    
+    firebase.auth().signInWithPopup(provider)
+    .then(function(result) {
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            console.log(user);
+            
+            // ...
+        })
+        .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            console.log(errorCode)
+            var errorMessage = error.message;
+            console.log(errorMessage)
+                // The email of the user's account used.
+            var email = error.email;
+            console.log(email)
+                // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            console.log(credential)
+                // ...
+        })
+    
+    }
+
+observador()
+
+
+///////////////////////////////////////////////////////////////////////////
+//Post
+
+
+  
+  var db = firebase.firestore();
+
+
+//agrega documentos
+const bntSave=document.getElementById('bntSave');
+bntSave.addEventListener('click',()=>{
+    const name= document.getElementById('name').value
+    const lastname= document.getElementById('lastname').value
+    const born= document.getElementById('born').value
+
+    db.collection("users").add({
+        first: name,
+        last: lastname,
+        born: born
+    })
+    .then(function(docRef) {
+        console.log("Document written with ID: ", docRef.id);
+        ///Para que luego de ingrsar los datos los imputs aparezcan vacios 
+        document.getElementById('name').value= '';
+        document.getElementById('lastname').value ='';
+        document.getElementById('born').value= '';
+
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    })
+})
+ //Leer documentos 
+ const table= document.getElementById('table');
+
+ db.collection("users").onSnapshot((querySnapshot) => {
+    table.innerHTML=''; //esto se hace para vaciar la tabla
+    querySnapshot.forEach((doc) => {
+       // console.log(`${doc.id} => ${doc.data().last}`);
+        table.innerHTML +=`
+        <tr>
+               <th>${doc.id}</th>
+               <td>${doc.data().first}</td>
+               <td>${doc.data().last}</td>
+               <td>${doc.data().born}</td>
+               <td><button onclick= "eliminar('${doc.id}')">Delete</button></td>
+               <td><button id ="editar"onclick= "editar('${doc.id}','${doc.data().first}','${doc.data().last}','${doc.data().born}')">Edit</button></td>        
+        </tr>`
+    });
+});
+
+//borrar documentos
+function eliminar(id){
+    db.collection("users").doc(id).delete()
+    .then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    })
+
+}
+
+///EDitar
+
+function editar(id,name,lastname,born){
+    let db = firebase.firestore();
+    document.getElementById('name').value= name;
+    document.getElementById('lastname').value= lastname;
+    document.getElementById('born').value= born;
+    const bnteditar=document.getElementById('editar');
+    bnteditar.innerHTML=`<button id="saveChange">Guardar cambio</button>`;//se cambia el nombre del boton guardar
+    
+    const bntSaveChange=document.getElementById('saveChange');
+    bntSaveChange.addEventListener('click',()=>{ //se hace la funcion para manejar el evento del boton y que tenga funcionalidad
+        console.log(id);
+        var washingtonRef = db.collection("users").doc(id);
+        const name= document.getElementById('name').value;
+        const lastname= document.getElementById('lastname').value;
+        const born= document.getElementById('born').value;
+    
+    
+            return washingtonRef.update({
+                first: name,
+                last: lastname,
+                born: born
+            })
+        .then(function() {
+            console.log("Document successfully updated!");
+            
+            const name= document.getElementById('name').value ='';
+            const lastname= document.getElementById('lastname').value ='';
+            const born= document.getElementById('born').value ='';
+        })
+        .catch(function(error) {
+            // The document probably doesn't exist.
+            console.error("Error updating document: ", error);
+        });
+    })
 }
