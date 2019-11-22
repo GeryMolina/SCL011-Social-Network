@@ -37,6 +37,7 @@
 
     <div id= "root"></div>
     <h1>Registro</h1>
+    <input id="name" type="text" placeholder="Nombre">
     <input id="email" type="text" placeholder="Correo">
     <input id="password" type="password" placeholder="Contraseña">
     <button id= "bntSigin">registrar</button>
@@ -49,27 +50,16 @@
     <button id= "bntFb">Facebook</button>
     <div id="root2"></div>
 
+   
     <h1>Agregar Usario</h1>
-    <input id="name" type="text" placeholder="Nombre">
-    <input id="lastname" type="text" placeholder="Apellido">
-    <input id="born" type="text" placeholder="Nacimiento">
+    <h2 id="name"></h2>
+    <input id="post" type="text" placeholder="Postear">
+    
     <button id= "bntSave">Agregar</button>
     <br>
-    <table>
-       <thead>
-           <tr>
-               <th>ID</th>
-               <th>First</th>
-               <th>Last</th>
-               <th>Born</th>
-               <th>Delete</th>
-               <th>Edit</th>
-           </tr>
-       </thead>
-       <tbody id="table">
-           
-       </tbody>
-    </table>
+
+    <div id="table"></div>
+  
     <script src="./app.js"></script>
     
 </body>

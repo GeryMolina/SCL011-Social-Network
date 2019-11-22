@@ -3,12 +3,16 @@
 
 const bntSigin= document.getElementById("bntSigin");
 bntSigin.addEventListener('click', () => {
+    
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;   
+    
     
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(function(){
         checkEmail();
+        
+        
     })
     .catch(function(error) {
         // Handle Errors here.
@@ -18,7 +22,7 @@ bntSigin.addEventListener('click', () => {
         console.log(errorMessage)
       });
     
-    
+    console.log(firebase.auth().currentUser.displayName)
 })
 
 //Ingreso de Usuarios
@@ -37,7 +41,7 @@ bntLogin.addEventListener('click', ()=>{
       });
 })
 
-//Monitorea el estado del usurio
+//Monitorea el estado del usuario
 const observador = () =>{
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -65,6 +69,7 @@ const observador = () =>{
         }
       });
 }
+
 
 const aparece = (user) =>{
     var user = user;
@@ -196,6 +201,7 @@ const authFacebook = () => {
 observador()
 
 
+
 ///////////////////////////////////////////////////////////////////////////
 //Post
 
@@ -207,49 +213,51 @@ observador()
 //agrega documentos
 const bntSave=document.getElementById('bntSave');
 bntSave.addEventListener('click',()=>{
-    const name= document.getElementById('name').value
-    const lastname= document.getElementById('lastname').value
-    const born= document.getElementById('born').value
+    
+    
+    const name= document.getElementById('name').textContent= firebase.auth().currentUser.displayName;
+    
+    const post= document.getElementById('post').value
+    
 
-    db.collection("users").add({
+    db.collection("Post").add({
+        id: firebase.auth().currentUser.uid,
         first: name,
-        last: lastname,
-        born: born
+        post: post
+        
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
         ///Para que luego de ingrsar los datos los imputs aparezcan vacios 
         document.getElementById('name').value= '';
-        document.getElementById('lastname').value ='';
-        document.getElementById('born').value= '';
+        document.getElementById('post').value ='';
+       
 
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
     })
 })
- //Leer documentos 
+//  //Leer documentos 
  const table= document.getElementById('table');
 
- db.collection("users").onSnapshot((querySnapshot) => {
+ db.collection("Post").onSnapshot((querySnapshot) => {
     table.innerHTML=''; //esto se hace para vaciar la tabla
     querySnapshot.forEach((doc) => {
        // console.log(`${doc.id} => ${doc.data().last}`);
         table.innerHTML +=`
-        <tr>
-               <th>${doc.id}</th>
-               <td>${doc.data().first}</td>
-               <td>${doc.data().last}</td>
-               <td>${doc.data().born}</td>
-               <td><button onclick= "eliminar('${doc.id}')">Delete</button></td>
-               <td><button id ="editar"onclick= "editar('${doc.id}','${doc.data().first}','${doc.data().last}','${doc.data().born}')">Edit</button></td>        
-        </tr>`
+        <h2 id="nombre">${doc.data().first}</h2>
+        <textarea id="posteo" cols="30" rows="10">${doc.data().post}</textarea>
+        
+               <button onclick= "eliminar('${doc.id}')">Delete</button>
+               <button id ="editar"onclick= "editar('${doc.id}','${doc.data().first}','${doc.data().post}')">Edit</button></td>        
+        `
     });
 });
 
 //borrar documentos
 function eliminar(id){
-    db.collection("users").doc(id).delete()
+    db.collection("Post").doc(id).delete()
     .then(function() {
         console.log("Document successfully deleted!");
     }).catch(function(error) {
@@ -260,34 +268,30 @@ function eliminar(id){
 
 ///EDitar
 
-function editar(id,name,lastname,born){
+function editar(id,first,post){
     let db = firebase.firestore();
-    document.getElementById('name').value= name;
-    document.getElementById('lastname').value= lastname;
-    document.getElementById('born').value= born;
+    document.getElementById('posteo').value= post;
     const bnteditar=document.getElementById('editar');
     bnteditar.innerHTML=`<button id="saveChange">Guardar cambio</button>`;//se cambia el nombre del boton guardar
     
     const bntSaveChange=document.getElementById('saveChange');
     bntSaveChange.addEventListener('click',()=>{ //se hace la funcion para manejar el evento del boton y que tenga funcionalidad
         console.log(id);
-        var washingtonRef = db.collection("users").doc(id);
-        const name= document.getElementById('name').value;
-        const lastname= document.getElementById('lastname').value;
-        const born= document.getElementById('born').value;
-    
+        var washingtonRef = db.collection("Post").doc(id);
+        
+        
+        const post= document.getElementById('posteo').value;
     
             return washingtonRef.update({
-                first: name,
-                last: lastname,
-                born: born
+                id: firebase.auth().currentUser.uid,
+                first: first,
+                post: post
+        
             })
         .then(function() {
             console.log("Document successfully updated!");
             
-            const name= document.getElementById('name').value ='';
-            const lastname= document.getElementById('lastname').value ='';
-            const born= document.getElementById('born').value ='';
+            document.getElementById('post').value ='';
         })
         .catch(function(error) {
             // The document probably doesn't exist.
@@ -295,3 +299,7 @@ function editar(id,name,lastname,born){
         });
     })
 }
+
+
+////////////////////////////
+//Validación de imputs ingresados 
