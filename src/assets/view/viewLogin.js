@@ -3,63 +3,40 @@ import {viewRegister} from './viewRegister.js'
 
 
 export const viewLogin = () => {
-     //creamos vista o pagina principal/
+    
      const contPrincipal = document.getElementById("root");
-     //creamos container principal
+     contPrincipal.innerHTML=`<div id="contInit" class="contInit">
+                                <div id="contHeader" class="contHeader">
+                                    <img class="logo" src="assets/img/logo.png"></a>
+                                </div>
+                                <div id="contBody" class="contBody1">
+                                    <div class="body5">
+                                    <h1>Inicia Sesión</h1>
+                                    </div>
+                                    <div class="body6">
+                                        <p>Correo Electrónico</p>
+                                        <input id="email2" type="text" ">
+                                        <p>Contraseña</p>
+                                        <input id="password2" type="password" >
+                                    </div>
+                                    <div class="body7">
+                                            <button id= "bntLogin" class="btnLogin">Ingresar</button>
+                                            <p id="register" class="register">Soy nuevo</p>
+                                    </div>
+                                    <div class="body8">
+                                        <h2>Accede con</h2>
+                                        <button id= "bntGoogle" class="btnGoogle">Google</button>
+                                        <button id= "bntFb" class="btnFb">Facebook</button>
+                                    </div>
+                                </div>
+                                <div id="contFooter" class="contFooter"></div>
+                            </div>      `
      
-     const contInit = document.createElement("div");
-     contInit.className = "contInit";
-     contInit.setAttribute("id", "contInit");
-     contPrincipal.appendChild(contInit);
- 
-     //creamos container header
-     const contHeader = document.createElement("div");
-     contHeader.className = "contHeader";
-     contHeader.setAttribute("id", "contHeader");
-     contInit.appendChild(contHeader);
-     contHeader.innerHTML += `
-                             <img class="logo" src="assets/img/logo.png"></a>
-                              `
-
-    //creamos container body
-    const contBody = document.createElement("div");
-    contBody.className = "contBody";
-    contHeader.setAttribute("id", "contBody");
-    contInit.appendChild(contBody);
-    contBody.innerHTML += ` <div class="body5">
-                                <h1>Inicio Sesión</h1>
-                            </div>
-                            <div class="body6">
-                                <p>Correo Electrónico</p>
-                                <input id="email2" type="text" placeholder="Correo">
-                            </div>
-                            <div class="body7">
-                                    <p>Contraseña</p>
-                                    <input id="password2" type="password" placeholder="Contraseña">
-                            </div>
-                            <div class="body8">
-                                    <button id= "bntLogin">Ingresar</button>
-                            </div>
-                            <div class="body9">
-                                <p id="register">Soy nuevo</p>
-                            </div>
-                            <div class="body9">
-                            <h4>Accede con</h4>
-                            <button id= "bntGoogle">Google</button>
-                            <button id= "bntFb">Facebook</button>
-                            </div>`
-
-
-    //creamos container footer
-    const contFooter = document.createElement("div");
-    contFooter.className = "contFooter";
-    contFooter.setAttribute("id", "contFooter");
-    contInit.appendChild(contFooter);
+  
    
 
     const register = document.getElementById("register");
     register.addEventListener('click', () => {
-        contInit.innerHTML = " "
         viewRegister()
     })
 
