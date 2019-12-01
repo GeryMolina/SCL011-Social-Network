@@ -3,18 +3,18 @@
 
 
 
-var db = firebase.firestore();
 
+
+
+    
 
 //agrega documentos
 
 
 export const addPost= () =>{
+    var db= firebase.firestore()
     const name = document.getElementById('name').textContent = firebase.auth().currentUser.displayName;
-
     const post = document.getElementById('post').value
-
-
     db.collection("Post").add({
         id: firebase.auth().currentUser.uid,
         first: name,
@@ -35,9 +35,10 @@ export const addPost= () =>{
 }
 
 //  //Leer documentos 
-const table = document.getElementById('table');
-
-db.collection("Post").onSnapshot((querySnapshot) => {
+export const showPost =()=>{
+    const table = document.getElementById('table');
+    var db= firebase.firestore();
+    db.collection("Post").onSnapshot((querySnapshot) => {
     table.innerHTML = ''; //esto se hace para vaciar la tabla
     querySnapshot.forEach((doc) => {
         // console.log(`${doc.id} => ${doc.data().last}`);
@@ -50,9 +51,12 @@ db.collection("Post").onSnapshot((querySnapshot) => {
         `
     });
 });
+}
+
 
 //borrar documentos
 function eliminar(id) {
+    var db= firebase.firestore();
     db.collection("Post").doc(id).delete()
         .then(function () {
             console.log("Document successfully deleted!");

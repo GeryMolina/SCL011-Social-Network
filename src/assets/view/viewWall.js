@@ -1,3 +1,4 @@
+import {viewPost} from "./viewPost.js"
 
 export const viewWall = () => {
     

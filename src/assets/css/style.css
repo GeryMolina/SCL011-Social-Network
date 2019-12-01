@@ -31,18 +31,15 @@
 
 }
 
-
 .contBody{
-    
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 380px;
     padding: 1px;
     grid-gap: 1px;
-    
     grid-template-rows: 1fr 2fr 1fr;
 }
-.imgInit{
+.imgInit, .store3{
     width: 80px;
     height: 80px;
    
@@ -58,7 +55,6 @@
     font-size: x-small;
 
 }
-
 
 h3{
     font-family: Verdana;
@@ -201,7 +197,7 @@ input{
     font-family: Verdana;
 
 }
-.contHeader2, .contFooter1{
+.contHeader2, .contFooter1,.contHeader3{
     background: #F8F5F5;
     display: flex;
     width: 100%;
@@ -231,7 +227,7 @@ input{
 .imgWall{
     width: 100%;
 }
-.nameStore, .nameStore1{
+.nameStore, .nameStore1, .nameStore2{
     font-family: Verdana;
     font-size: 12px;
     line-height: 17px;
@@ -280,4 +276,63 @@ input{
     align-items: baseline;
     display :flex;
     grid-column: 1/3;
+}
+/* Vista post */
+.contBody4{
+    display:grid;
+    height: 80%;
+    padding: 1px;
+    grid-gap: 1px;
+    grid-template-rows: 2fr 6fr  1fr ;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    font-family: Verdana;
+}
+.body15, .body16, .body17{
+    display: flex;
+    grid-column: 1/3;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.body15{
+    justify-content: flex-end !important ;
+    margin:10% 0 5% 0;
+}
+.nameStore2{
+    margin-top: 5%;
+}
+.post{
+    width: 262px;
+    height: 161px;
+    left: 57px;
+    top: 243px;
+    background: #F6F2F2;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
+.photo{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-self: flex-end;
+    margin-right: 10%;
+    margin-top: 3%;
+}
+.body17{
+    margin: 0 0 40% 0;
+    
+}
+.contHeader3{
+    flex-direction: row;
+    justify-content: space-evenly !important;
+}
+
+.title{
+    font-family: Verdana;
+    font-size: 16px;
+    line-height: 17px;
+    font-weight: bold;
+    color: #000000;
+    
 }
