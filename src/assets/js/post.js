@@ -7,10 +7,9 @@ var db = firebase.firestore();
 
 
 //agrega documentos
-const bntSave = document.getElementById('bntSave');
-bntSave.addEventListener('click', () => {
 
 
+export const addPost= () =>{
     const name = document.getElementById('name').textContent = firebase.auth().currentUser.displayName;
 
     const post = document.getElementById('post').value
@@ -33,7 +32,8 @@ bntSave.addEventListener('click', () => {
         .catch(function (error) {
             console.error("Error adding document: ", error);
         })
-})
+}
+
 //  //Leer documentos 
 const table = document.getElementById('table');
 

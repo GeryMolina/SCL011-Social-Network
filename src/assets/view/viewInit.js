@@ -13,11 +13,11 @@ export const viewInit = () => {
                                         <h3>Te conectamos con miles de emprendedores de todo el país.</h3>
                                     </div>
                                     <div class="body2" >
-                                        <img src="/assets/img/001-tienda.png" id="store" class="imgInit">
+                                        <img src="/assets/img/tienda.png" id="store" class="imgInit">
                                         <h4>Soy tienda</h4>
                                     </div>
                                     <div class="body3">
-                                        <img src="/assets/img/002-usuario.png" id="user" class="imgInit">
+                                        <img src="/assets/img/usuario.png" id="user" class="imgInit">
                                         <h4>Soy cliente</h4>
                                     </div>
                                     <div class="body4">

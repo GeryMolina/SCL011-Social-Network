@@ -38,6 +38,7 @@ export const login = ()=>{
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then (function(){
             closeSession()
+
         })
         .catch(function (error) {
             // Handle Errors here.

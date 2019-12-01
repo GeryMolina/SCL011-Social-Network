@@ -1,3 +1,4 @@
+import { viewWall } from "./viewWall.js";
 
 export const viewRegister=()=>{
 
@@ -27,7 +28,7 @@ export const viewRegister=()=>{
 
    const register = document.getElementById("bntRegister");
    register.addEventListener('click', () => {
-       contInit.innerHTML = " "
+       viewWall();
        
    })
 

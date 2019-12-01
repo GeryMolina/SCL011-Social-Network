@@ -182,3 +182,102 @@ input{
     margin-top: 10%;
     margin-right: 0 !important;
 }
+
+/* Vista Muro */
+
+.contInit1{
+    width: 320px;
+    height: 568px;
+}
+
+.contBody3{
+    display:grid;
+    height: 80%;
+    padding: 1px;
+    grid-gap: 1px;
+    grid-template-rows: 2fr 1fr 6fr 2fr ;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    font-family: Verdana;
+
+}
+.contHeader2, .contFooter1{
+    background: #F8F5F5;
+    display: flex;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+    justify-content: flex-start;
+}
+.logo2{
+    width: 40%;
+    height: 70px;
+}
+.store{
+    height: 40px;
+    width: 40px;
+    align-self: center;
+    margin-left: 40%;
+
+}
+.like{
+    height: 20px;
+}
+
+.menu{
+    width: 35px;
+    height: 35px;
+}
+.imgWall{
+    width: 100%;
+}
+.nameStore, .nameStore1{
+    font-family: Verdana;
+    font-size: 12px;
+    line-height: 17px;
+    font-weight: bold;
+    color: #000000;
+}
+.nameStore1{
+    margin: 0 0 10px 0;
+}
+.numberLikes{
+    font-weight: bold;
+}
+.like{
+    margin-left: 4%;
+    margin-top: 8%;
+}
+
+.bodySlider{
+    background: burlywood;
+    grid-column: 1/3;
+}
+.contFooter1{
+    flex-direction: row;
+    justify-self: flex-end;
+    justify-content: space-around;
+}
+.body12, .body12B{
+    display :flex;
+    align-items: flex-end;
+}
+.body12{
+    margin-left: 10%;
+}
+.body12B{
+    margin-right: 10%;
+    justify-content: flex-end;
+}
+.body14{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+    grid-column: 1/3;
+    margin-right: 2%;
+}
+.body13{
+    align-items: baseline;
+    display :flex;
+    grid-column: 1/3;
+}

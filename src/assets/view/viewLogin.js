@@ -1,5 +1,6 @@
 import {login, authGoogle , authFacebook} from '../js/auth.js'
 import {viewRegister} from './viewRegister.js'
+import { viewWall } from './viewWall.js';
 
 
 export const viewLogin = () => {
@@ -44,6 +45,7 @@ export const viewLogin = () => {
     const btnLogin=document.getElementById("bntLogin");
     btnLogin.addEventListener("click",()=>{
         login();
+        viewWall();
     })
 
 
