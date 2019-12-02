@@ -1,4 +1,7 @@
 import {viewPost} from "./viewPost.js"
+import {viewPerfil} from "./viewPerfil.js"
+import {viewLikes} from "./viewLikes.js"
+import {viewConfig} from "./viewConfig.js"
 
 export const viewWall = () => {
     
@@ -6,11 +9,11 @@ export const viewWall = () => {
     contPrincipal.innerHTML=`<div id="contInit1" class="contInit1">
                                <div id="contHeader" class="contHeader2">
                                    <img class="logo2" src="assets/img/logo2.png">
-                                   <img class="store" src="assets/img/tienda.png">
+                                   <img id="perfil" class="store" src="assets/img/tienda.png">
                                </div>
                                <div id="contBody" class="contBody3">
                                    <div class="bodySlider">
-                                         <h1>Inicia Sesión</h1>
+                                         <h1>Slider</h1>
                                    </div>
                                    <div class="body12">
                                         <p id="" class="nameStore">Moonlook</p>
@@ -40,21 +43,23 @@ export const viewWall = () => {
 
    const add = document.getElementById("add");
    add.addEventListener('click', () => {
-       viewPost()
+       viewPost();
    })
 
+   const perfil = document.getElementById("perfil");
+   perfil.addEventListener('click', ()=>{
+       viewPerfil();
+   })
 
    const likes = document.getElementById("likes");
    likes.addEventListener("click",()=>{
-       
+       viewLikes();
    })
 
 
    const configuration = document.getElementById("configuration");
    configuration.addEventListener("click", () => {
-
-       
-
+        viewConfig();
    })
   
    

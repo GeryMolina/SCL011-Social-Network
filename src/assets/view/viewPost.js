@@ -1,4 +1,8 @@
-import { addPost } from "../js/post.js";
+import { addPost } from "../js/post.js"
+import {viewPerfil} from "./viewPerfil.js"
+import {viewLikes} from "./viewLikes.js"
+import {viewWall} from "./viewWall.js"
+import {viewConfig} from "./viewConfig.js"
 
 export const viewPost= () =>{
     const contPrincipal = document.getElementById("root");
@@ -32,6 +36,31 @@ export const viewPost= () =>{
     const bntSave = document.getElementById('bntSave');
     bntSave.addEventListener('click', () => {
         addPost();
+        viewPerfil();
     })
-
+    const house = document.getElementById("house");
+    house.addEventListener("click",()=>{
+        viewWall();                   
+    })
+                        
+    const add = document.getElementById("add");
+    add.addEventListener('click', () => {
+        viewPost();
+    })
+                         
+    const perfil = document.getElementById("perfil");
+    perfil.addEventListener('click', ()=>{
+        viewPerfil();
+    })
+                         
+    const likes = document.getElementById("likes");
+    likes.addEventListener("click",()=>{
+        viewLikes();
+    })
+                         
+                         
+    const configuration = document.getElementById("configuration");
+    configuration.addEventListener("click", () => {
+        viewConfig();                  
+    })
 }
