@@ -16,17 +16,17 @@ export const viewWall = () => {
                                          <h1>Slider</h1>
                                    </div>
                                    <div class="body12">
-                                        <p id="" class="nameStore">Moonlook</p>
+                                        <p  class="nameStore">Moonlook</p>
                                    </div>
                                    <div class="body12B">
-                                        <p id="" class="numberLikes">489</p>
+                                        <p  class="numberLikes">489</p>
                                         <img class="like" src="assets/img/corazon.png">
                                    </div>
                                         <div class="body13">
                                         <img class="imgWall" src="https://bcncoolhunter.com/wp-content/uploads/2019/03/gafas-graduadas-moda-2019.jpg">
                                    </div>
                                    <div class="body14">
-                                        <p id="" class="nameStore1">Moonlook</p>
+                                        <p class="nameStore1">Moonlook</p>
                                         <p class="description">Llegaron nuevos modelos que son tendencia en este 2019. Visita nuestro prefil para enterarte de nuestras novedades y descuentos.</p>
                                    </div>
                                </div>

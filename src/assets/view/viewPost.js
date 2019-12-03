@@ -1,15 +1,15 @@
 import { addPost } from "../js/post.js"
-import {viewPerfil} from "./viewPerfil.js"
-import {viewLikes} from "./viewLikes.js"
-import {viewWall} from "./viewWall.js"
-import {viewConfig} from "./viewConfig.js"
+import { viewPerfil } from "./viewPerfil.js"
+import { viewLikes } from "./viewLikes.js"
+import { viewWall } from "./viewWall.js"
+import { viewConfig } from "./viewConfig.js"
 
-export const viewPost= () =>{
+export const viewPost = () => {
     const contPrincipal = document.getElementById("root");
-    contPrincipal.innerHTML=`<div id="contInit1" class="contInit1">
+    contPrincipal.innerHTML = `<div id="contInit1" class="contInit1">
                                <div id="contHeader" class="contHeader3">
                                    <h1 class="title">Publicar</h1>
-                                   <img class="store" src="assets/img/tienda.png">
+                                   <img id="perfil" class="store" src="assets/img/tienda.png">
                                </div>
                                <div id="contBody" class="contBody4">
                                    <div class="body15">
@@ -31,36 +31,37 @@ export const viewPost= () =>{
                                     <img id="configuration" class="menu" src="assets/img/engranaje.png">
                                 </div>
                             </div>      `
-    
- 
+
+
+   
     const bntSave = document.getElementById('bntSave');
     bntSave.addEventListener('click', () => {
         addPost();
         viewPerfil();
     })
     const house = document.getElementById("house");
-    house.addEventListener("click",()=>{
-        viewWall();                   
+    house.addEventListener("click", () => {
+        viewWall();
     })
-                        
+
     const add = document.getElementById("add");
     add.addEventListener('click', () => {
         viewPost();
     })
-                         
+
     const perfil = document.getElementById("perfil");
-    perfil.addEventListener('click', ()=>{
+    perfil.addEventListener('click', () => {
         viewPerfil();
     })
-                         
+
     const likes = document.getElementById("likes");
-    likes.addEventListener("click",()=>{
+    likes.addEventListener("click", () => {
         viewLikes();
     })
-                         
-                         
+
+
     const configuration = document.getElementById("configuration");
     configuration.addEventListener("click", () => {
-        viewConfig();                  
+        viewConfig();
     })
 }

@@ -1,3 +1,5 @@
+import { viewWall } from "../view/viewWall.js";
+import { viewInit } from "../view/viewInit.js";
 
 //registro de usuarios
 
@@ -8,6 +10,7 @@ export const registerUser =()=> {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(function () {
                 checkEmail();
+                viewWall();
 
 
             })
@@ -37,6 +40,7 @@ export const login = ()=>{
     if (validationEmail(email)){
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then (function(){
+            viewWall();
             closeSession()
 
         })
@@ -96,6 +100,7 @@ export const  closeSession=() => {
     firebase.auth().signOut()
         .then(function () {
             console.log("saliendo");
+            viewInit();
         })
         .catch(function (error) {
             console.log(error);
@@ -125,89 +130,48 @@ export const checkEmail = () => {
 
 
 export const authGoogle= ()=>{
-    authFB();
-    authenticationGoogle();
-}
-
-function authFB(){
-    const provider = new firebase.auth.GoogleAuthProvider();
-    authenticationGoogle(provider)
-}
     
-function authenticationGoogle(base_provider) {
-        firebase.auth().signInWithPopup(base_provider).
-            then(function (result) {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                var token = result.credential.accessToken;
-                // The signed-in user info.
-                var user = result.user;
-                console.log(result);
-    
-    
+        let provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider)
+        .then(function(result) {
+            var token = result.credential.accessToken;
+            var user = result.user;
+            viewWall();
             })
-            .catch(function (error) {
-                console.log(error);
-                // Handle Errors here.
-                var errorCode = error.code;
-                console.log(errorCode);
-                var errorMessage = error.message;
-                console.log(errorMessage);
-                // The email of the user's account used.
-                var email = error.email;
-                console.log(email);
-                // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
-                console.log(credential);
-    
-            });
-    
-    }
-    
+        .catch(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            var email = error.email;
+            var credential = error.credential;
+        });
+}    
 
-//Autenticando con Firebase a través del objeto del proveedor de Google
 
 // Acceso con Facebook
-export const authFacebook= () =>{
-    authFacebookd();
-    authCuentaFacebook();
-}
 
 
 
-const authFacebookd = () => {
+export const authFacebook=() => {
     const provider = new firebase.auth.FacebookAuthProvider();
-    authCuentaFacebook(provider);
-}
-
-//authenticando con facebook
-
-
-function authCuentaFacebook(provider) {
-
     firebase.auth().signInWithPopup(provider)
         .then(function (result) {
-            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-
             var token = result.credential.accessToken;
-            // The signed-in user info.
             var user = result.user;
-            console.log(user);
-
-            // ...
+            viewWall();
+            //console.log(user);
         })
         .catch(function (error) {
-            // Handle Errors here.
+            
             var errorCode = error.code;
-            console.log(errorCode)
+            
             var errorMessage = error.message;
-            console.log(errorMessage)
+            
             // The email of the user's account used.
             var email = error.email;
-            console.log(email)
+            
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
-            console.log(credential)
-            // ...
+            
         })
 
 }

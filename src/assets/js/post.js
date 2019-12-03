@@ -1,10 +1,4 @@
-///////////////////////////////////////////////////////////////////////////
-//Post
-
-
-
-
-
+import { viewPerfil } from "../view/viewPerfil.js";
 
     
 
@@ -16,45 +10,41 @@ export const addPost= () =>{
     //const name = document.getElementById('name').textContent = firebase.auth().currentUser.displayName;
     const post = document.getElementById('post').value
     db.collection("Post").add({
-        //id: firebase.auth().currentUser.uid,
-        first: name,
+        id: firebase.auth().currentUser.uid,
         post: post
 
     })
         .then(function (docRef) {
             console.log("Document written with ID: ", docRef.id);
             ///Para que luego de ingrsar los datos los imputs aparezcan vacios 
-            // BB   document.getElementById('name').value = '';
-            document.getElementById('post').value = '';
-
+           //document.getElementById('name').value = '';
+            //document.getElementById('post').value = '';
+            viewPerfil();
 
         })
         .catch(function (error) {
-            console.error("Error adding document: ", error);
+            console.log("Error adding document: ", error);
         })
         
 }
 
 //  //Leer documentos 
 export const showPost =()=>{
-    const post = document.getElementById('posteo');
+    const print = document.getElementById('post2');
+    console.log('Soy contenido')
     var db= firebase.firestore();
+    
     db.collection("Post").onSnapshot((querySnapshot) => {
-    //post.innerHTML = ''; //esto se hace para vaciar la tabla
-    querySnapshot.forEach((doc) => {
-        // console.log(`${doc.id} => ${doc.data().last}`);
-        // post.innerHTML += `
-        // <h2 id="nombre">${doc.data().first}</h2>
-        // <p id="posteo" class="phrase">${doc.data().post}</p>
-        
-        
-        //      <img class= "delete" src="assets/img/borrar.png" onclick= "eliminar('${doc.id}')">
-        //      <img class= "delete" src="assets/img/lapiz.png" onclick= "editar('${doc.id}','${doc.data().post}')">
-                     
-        // `
+        print.innerHTML = ''; //esto se hace para vaciar la tabla
+        querySnapshot.forEach((doc) => {
+            print.innerHTML += `
+            <p id="posteo" class="phrase">${doc.data().post}</p>
+                <img class= "delete" src="assets/img/borrar.png" onclick= "eliminar('${doc.id}')">
+                <img class= "delete" src="assets/img/lapiz.png" onclick= "editar('${doc.id}','${doc.data().post}')">            
+            `
+        });
     });
-    });
-    return showPost('${doc.id}','${doc.data().post}')
+    
 }
 
 

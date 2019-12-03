@@ -1,3 +1,4 @@
+import {closeSession} from "../js/auth.js"
 import {viewPost} from "./viewPost.js"
 import {viewPerfil} from "./viewPerfil.js"
 import {viewWall} from "./viewWall.js"
@@ -17,15 +18,15 @@ export const viewConfig = () => {
                                     <div id="contBody" class="contBody7">
                                         <div class="body23">
                                                       
-                                                <p id="" class="config">General</p>
+                                                <p class="config">General</p>
                                         </div>
                                         <div class="body24">
                                                          
-                                                <p id="" class="config">Notificaciones</p>
+                                                <p class="config">Notificaciones</p>
                                         </div>
                                         <div class="body25">
                                                         
-                                                <p id="" class="config">Privacidad</p>
+                                                <p class="config">Privacidad</p>
                                         </div>
                                         <div id="close" class="body26">
                                                       
@@ -48,7 +49,8 @@ export const viewConfig = () => {
     
     const close = document.getElementById("close");
     close.addEventListener('click', ()=> {
-        viewInit();
+        closeSession();
+        
     })      
 
     const deleteAccount = document.getElementById("delete");
